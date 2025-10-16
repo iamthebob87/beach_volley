@@ -5,130 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beach Volley Pro - Scheda Giocatore</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to bottom, #121212, #1e1e1e);
-      color: #f5f5f5;
-    }
-
-    header {
-      background-color: #111;
-      color: #00e676;
-      text-align: center;
-      padding: 1rem;
-      border-bottom: 2px solid #00e676;
-    }
-
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 2rem;
-      justify-content: center;
-    }
-
-    .scheda-preview, .scheda {
-      width: 280px;
-      background-color: #1a1a1a;
-      border: 2px solid #00e676;
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
-      text-align: center;
-      transition: box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .scheda-preview:hover, .scheda:hover {
-      box-shadow: 0 0 20px #00e676;
-    }
-
-    .add-card {
-      width: 280px;
-      height: 100%;
-      background-color: #222;
-      border: 2px dashed #00e676;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: #00e676;
-      cursor: pointer;
-    }
-
-    .valutazione {
-      font-size: 1.5rem;
-      color: #00e676;
-      margin-bottom: 0.5rem;
-    }
-
-    .badge {
-      background-color: #00e676;
-      color: #000;
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-
-    .bar {
-      background-color: #333;
-      height: 10px;
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-
-    .bar div {
-      height: 10px;
-      background-color: #00e676;
-      width: 0%;
-      transition: width 0.3s ease-in-out;
-    }
-
-    .editor {
-      position: fixed;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #121212;
-      border: 2px solid #00e676;
-      padding: 2rem;
-      z-index: 1000;
-      display: none;
-      width: 300px;
-      border-radius: 12px;
-    }
-
-    .editor input,
-    .editor select {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      background-color: #222;
-      color: #f5f5f5;
-      border: 1px solid #00e676;
-      border-radius: 6px;
-    }
-
-    .editor button {
-      background-color: #00e676;
-      color: #000;
-      border: none;
-      padding: 0.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 6px;
-      width: 100%;
-    }
-
-    .editor button:hover {
-      background-color: #00c853;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -137,18 +14,18 @@
 
   <main id="container">
     <!-- Scheda iniziale -->
-    <section class="scheda-preview" data-id="0">
-      <img id="foto" src="default.png" alt="Giocatore" />
-      <div class="valutazione" id="valutazione">92</div>
-      <h2 id="nome-preview">Nome Giocatore</h2>
-      <div class="badge" id="ruolo-preview">🏐 Attaccante</div>
+    <section class="scheda giocatore" data-id="0">
+      <img src="default.png" alt="Giocatore" />
+      <div class="valutazione">92</div>
+      <h2>Nome Giocatore</h2>
+      <div class="badge">🏐 Attaccante</div>
       <div class="statistiche">
-        <div class="stat"><span>Potenza Schiacciata</span><div class="bar"><div id="potenza-bar"></div></div></div>
-        <div class="stat"><span>Precisione Servizio</span><div class="bar"><div id="precisione-bar"></div></div></div>
-        <div class="stat"><span>Ricezione</span><div class="bar"><div id="ricezione-bar"></div></div></div>
-        <div class="stat"><span>Muro</span><div class="bar"><div id="muro-bar"></div></div></div>
-        <div class="stat"><span>Resistenza al Caldo</span><div class="bar"><div id="resistenza-bar"></div></div></div>
-        <div class="stat"><span>Agilità sulla Sabbia</span><div class="bar"><div id="agilita-bar"></div></div></div>
+        <div class="stat"><span>Potenza Schiacciata</span><div class="bar"><div class="potenza-bar"></div></div></div>
+        <div class="stat"><span>Precisione Servizio</span><div class="bar"><div class="precisione-bar"></div></div></div>
+        <div class="stat"><span>Ricezione</span><div class="bar"><div class="ricezione-bar"></div></div></div>
+        <div class="stat"><span>Muro</span><div class="bar"><div class="muro-bar"></div></div></div>
+        <div class="stat"><span>Resistenza al Caldo</span><div class="bar"><div class="resistenza-bar"></div></div></div>
+        <div class="stat"><span>Agilità sulla Sabbia</span><div class="bar"><div class="agilita-bar"></div></div></div>
       </div>
     </section>
 
@@ -157,7 +34,7 @@
   </main>
 
   <!-- Editor modale -->
-  <section class="editor" id="editor">
+  <section class="editor" id="editor" style="display: none;">
     <input type="text" id="nome" placeholder="Nome giocatore" />
     <input type="file" id="upload-img" accept="image/*" />
     <select id="ruolo">
@@ -175,35 +52,73 @@
   </section>
 
   <script>
-    const stats = ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"];
-    let currentCard = document.querySelector(".scheda-preview");
+    document.addEventListener("DOMContentLoaded", function () {
+      const stats = ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"];
+      let currentCard = null;
 
-    function updateBar(id, value) {
-      const bar = currentCard.querySelector(`#${id}-bar`);
-      if (bar) bar.style.width = value + "%";
-    }
+      function updateBar(card, stat, value) {
+        const bar = card.querySelector(`.${stat}-bar`);
+        if (bar) bar.style.width = value + "%";
+      }
 
-    function openEditor(card) {
-      currentCard = card;
-      document.getElementById("editor").style.display = "block";
-    }
+      function openEditor(card) {
+        currentCard = card;
+        document.getElementById("editor").style.display = "block";
+      }
 
-    function closeEditor() {
-      document.getElementById("editor").style.display = "none";
-    }
+      function closeEditor() {
+        document.getElementById("editor").style.display = "none";
+      }
 
-    document.querySelector(".scheda-preview").addEventListener("click", () => openEditor(document.querySelector(".scheda-preview")));
+      document.querySelectorAll(".scheda").forEach(card => {
+        card.addEventListener("click", () => openEditor(card));
+      });
 
-    document.getElementById("add-card").addEventListener("click", () => {
-      const newCard = document.createElement("section");
-      newCard.className = "scheda";
-      newCard.innerHTML = `
-        <div class="valutazione">--</div>
-        <h2>Nuovo Giocatore</h2>
-        <div class="badge">🏐 Ruolo</div>
-        <div class="statistiche">
-          ${stats.map(stat => `<div class="stat"><span>${stat}</span><div class="bar"><div id="${stat}-bar"></div></div></div>`).join("")}
-        </div>
-      `;
-      newCard.addEventListener("click", () => openEditor(newCard));
-      document.getElementById("container").insertBefore(newCard, document.get
+      document.getElementById("add-card").addEventListener("click", () => {
+        const newCard = document.createElement("section");
+        newCard.className = "scheda giocatore";
+        newCard.innerHTML = `
+          <img src="default.png" alt="Giocatore" />
+          <div class="valutazione">--</div>
+          <h2>Nuovo Giocatore</h2>
+          <div class="badge">🏐 Ruolo</div>
+          <div class="statistiche">
+            ${stats.map(stat => `
+              <div class="stat"><span>${stat}</span><div class="bar"><div class="${stat}-bar"></div></div></div>
+            `).join("")}
+          </div>
+        `;
+        newCard.addEventListener("click", () => openEditor(newCard));
+        document.getElementById("container").insertBefore(newCard, document.getElementById("add-card"));
+        openEditor(newCard);
+      });
+
+      document.getElementById("applica").addEventListener("click", () => {
+        const nome = document.getElementById("nome").value;
+        const ruolo = document.getElementById("ruolo").value;
+        const fileInput = document.getElementById("upload-img");
+        const file = fileInput.files[0];
+
+        currentCard.querySelector("h2").textContent = nome || "Nome Giocatore";
+        currentCard.querySelector(".badge").textContent = "🏐 " + ruolo;
+
+        stats.forEach(stat => {
+          const value = document.getElementById(stat).value;
+          updateBar(currentCard, stat, value);
+        });
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = currentCard.querySelector("img");
+            if (img) img.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+
+        closeEditor();
+      });
+    });
+  </script>
+</body>
+</html>
