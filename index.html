@@ -27,12 +27,24 @@
         <div class="stat"><span>Agilità sulla Sabbia</span><div class="bar"><div id="agilita-bar"></div></div></div>
       </div>
     </section>
-<script src="script.js"></script>
 
     <section class="editor">
       <input type="text" id="nome" placeholder="Nome giocatore" />
       <input type="file" id="upload-img" accept="image/*" />
       <select id="ruolo">
         <option>Attaccante</option>
+        <option>Difensore</option>
+        <option>All-Rounder</option>
+      </select>
+      <label>Potenza Schiacciata</label><input type="range" id="potenza" min="0" max="100" value="90" />
+      <label>Precisione Servizio</label><input type="range" id="precisione" min="0" max="100" value="85" />
+      <label>Ricezione</label><input type="range" id="ricezione" min="0" max="100" value="95" />
+      <label>Muro</label><input type="range" id="muro" min="0" max="100" value="78" />
+      <label>Resistenza al Caldo</label><input type="range" id="resistenza" min="0" max="100" value="99" />
+      <label>Agilità sulla Sabbia</label><input type="range" id="agilita" min="0" max="100" value="88" />
+    </section>
+  </main>
 
-
+  <script src="script.js"></script>
+</body>
+</html>
