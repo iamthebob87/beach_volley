@@ -1,0 +1,192 @@
+/* Stili Generali */
+body {
+font-family: &#39;Arial&#39;, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f4f4f4;
+color: #333;
+
+}
+
+header {
+background-color: #007bff; /* Blu Sportivo */
+color: white;
+padding: 20px;
+text-align: center;
+}
+
+nav {
+background-color: #333;
+overflow: hidden;
+}
+
+nav ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+
+nav ul li {
+display: inline;
+}
+
+nav ul li a {
+display: inline-block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+nav ul li a:hover {
+background-color: #555;
+}
+
+main {
+padding: 20px;
+display: flex;
+gap: 20px;
+}
+
+.partite {
+flex: 2;
+background-color: white;
+padding: 15px;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.statistiche {
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.card-partita {
+border-bottom: 1px solid #eee;
+padding: 10px 0;
+}
+
+.card-partita span {
+font-weight: bold;
+color: #dc3545; /* Rosso per i risultati */
+margin: 0 10px;
+}
+
+.stat-card {
+background-color: #fff;
+padding: 15px;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card.migliore {
+border-left: 5px solid gold;
+}
+.stat-card.assente {
+border-left: 5px solid orange;
+}
+
+footer {
+background-color: #333;
+color: white;
+text-align: center;
+padding: 10px 0;
+position: fixed;
+bottom: 0;
+width: 100%;
+}
+
+/* Stili Schede Giocatori (Ispirazione PES) */
+
+.main-giocatori {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+padding-bottom: 60px; /* Spazio per il footer */
+
+}
+
+.scheda-giocatore {
+background-color: #2c3e50; /* Sfondo scuro per contrasto */
+color: white;
+padding: 20px;
+border-radius: 10px;
+width: 300px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+position: relative;
+overflow: hidden;
+}
+
+.scheda-giocatore h2 {
+color: #1abc9c; /* Verde/Ciano per il nome */
+margin-top: 0;
+border-bottom: 2px solid #1abc9c;
+padding-bottom: 5px;
+}
+
+.valutazione {
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: #e74c3c; /* Rosso/Arancione */
+
+padding: 5px 10px;
+border-radius: 5px;
+font-size: 1.5em;
+font-weight: bold;
+}
+
+.statistiche-pes {
+margin-top: 15px;
+}
+
+.stat-blocco {
+margin-bottom: 15px;
+padding-left: 10px;
+border-left: 3px solid #3498db; /* Blu per i blocchi */
+}
+
+.stat-blocco h4 {
+margin-top: 0;
+color: #ecf0f1;
+}
+
+/* Grafica a Barra (Simulazione) */
+.statistiche-pes p {
+display: flex;
+justify-content: space-between;
+
+align-items: center;
+font-size: 0.9em;
+margin: 5px 0;
+}
+
+.statistiche-pes p span {
+display: block;
+height: 8px;
+background-color: #555;
+flex-grow: 1;
+margin-right: 10px;
+position: relative;
+}
+
+.statistiche-pes p span::after {
+content: &#39;&#39;;
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+background-color: #1abc9c; /* Barra di riempimento */
+width: var(--val); /* Usa la variabile definita nell&#39;HTML */
+transition: width 0.5s ease;
+}
+
+/* Per i browser che non supportano le var (obsoleto, ma buona pratica) */
+@supports not (width: var(--val)) {
+.statistiche-pes p span::after {
+width: 80%; /* Valore di fallback */
+}
+}
