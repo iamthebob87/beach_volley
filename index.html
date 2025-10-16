@@ -5,15 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beach Volley Pro - Scheda Giocatore</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #121212, #1e1e1e);
+      color: #f5f5f5;
+    }
+
+    header {
+      background-color: #111;
+      color: #00e676;
+      text-align: center;
+      padding: 1rem;
+      border-bottom: 2px solid #00e676;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+      justify-content: center;
+    }
+
+    .scheda-preview, .scheda {
+      width: 280px;
+      background-color: #1a1a1a;
+      border: 2px solid #00e676;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .scheda-preview:hover, .scheda:hover {
+      box-shadow: 0 0 20px #00e676;
+    }
+
+    .add-card {
+      width: 280px;
+      height: 100%;
+      background-color: #222;
+      border: 2px dashed #00e676;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #00e676;
+      cursor: pointer;
+    }
+
+    .valutazione {
+      font-size: 1.5rem;
+      color: #00e676;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge {
+      background-color: #00e676;
+      color: #000;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .bar {
+      background-color: #333;
+      height: 10px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .bar div {
+      height: 10px;
+      background-color: #00e676;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .editor {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #121212;
+      border: 2px solid #00e676;
+      padding: 2rem;
+      z-index: 1000;
+      display: none;
+      width: 300px;
+      border-radius: 12px;
+    }
+
+    .editor input,
+    .editor select {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background-color: #222;
+      color: #f5f5f5;
+      border: 1px solid #00e676;
+      border-radius: 6px;
+    }
+
+    .editor button {
+      background-color: #00e676;
+      color: #000;
+      border: none;
+      padding: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .editor button:hover {
+      background-color: #00c853;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Beach Volley Pro</h1>
   </header>
 
-  <main>
-    <section class="scheda-preview">
+  <main id="container">
+    <!-- Scheda iniziale -->
+    <section class="scheda-preview" data-id="0">
       <img id="foto" src="default.png" alt="Giocatore" />
       <div class="valutazione" id="valutazione">92</div>
       <h2 id="nome-preview">Nome Giocatore</h2>
@@ -28,60 +152,58 @@
       </div>
     </section>
 
-    <section class="editor">
-      <input type="text" id="nome" placeholder="Nome giocatore" />
-      <input type="file" id="upload-img" accept="image/*" />
-      <select id="ruolo">
-        <option>Attaccante</option>
-        <option>Difensore</option>
-        <option>All-Rounder</option>
-      </select>
-      <label>Potenza Schiacciata</label><input type="range" id="potenza" min="0" max="100" value="90" />
-      <label>Precisione Servizio</label><input type="range" id="precisione" min="0" max="100" value="85" />
-      <label>Ricezione</label><input type="range" id="ricezione" min="0" max="100" value="95" />
-      <label>Muro</label><input type="range" id="muro" min="0" max="100" value="78" />
-      <label>Resistenza al Caldo</label><input type="range" id="resistenza" min="0" max="100" value="99" />
-      <label>Agilità sulla Sabbia</label><input type="range" id="agilita" min="0" max="100" value="88" />
-      <button id="applica">Applica Modifiche</button>
-    </section>
+    <!-- Slot per nuova scheda -->
+    <div class="add-card" id="add-card">+</div>
   </main>
 
+  <!-- Editor modale -->
+  <section class="editor" id="editor">
+    <input type="text" id="nome" placeholder="Nome giocatore" />
+    <input type="file" id="upload-img" accept="image/*" />
+    <select id="ruolo">
+      <option>Attaccante</option>
+      <option>Difensore</option>
+      <option>All-Rounder</option>
+    </select>
+    <label>Potenza Schiacciata</label><input type="range" id="potenza" min="0" max="100" value="90" />
+    <label>Precisione Servizio</label><input type="range" id="precisione" min="0" max="100" value="85" />
+    <label>Ricezione</label><input type="range" id="ricezione" min="0" max="100" value="95" />
+    <label>Muro</label><input type="range" id="muro" min="0" max="100" value="78" />
+    <label>Resistenza al Caldo</label><input type="range" id="resistenza" min="0" max="100" value="99" />
+    <label>Agilità sulla Sabbia</label><input type="range" id="agilita" min="0" max="100" value="88" />
+    <button id="applica">Applica Modifiche</button>
+  </section>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const stats = ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"];
+    const stats = ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"];
+    let currentCard = document.querySelector(".scheda-preview");
 
-      function updateBar(id, value) {
-        const bar = document.getElementById(id + "-bar");
-        if (bar) bar.style.width = value + "%";
-      }
+    function updateBar(id, value) {
+      const bar = currentCard.querySelector(`#${id}-bar`);
+      if (bar) bar.style.width = value + "%";
+    }
 
-      document.getElementById("applica").addEventListener("click", function () {
-        // Nome
-        const nome = document.getElementById("nome").value;
-        document.getElementById("nome-preview").textContent = nome || "Nome Giocatore";
+    function openEditor(card) {
+      currentCard = card;
+      document.getElementById("editor").style.display = "block";
+    }
 
-        // Ruolo
-        const ruolo = document.getElementById("ruolo").value;
-        document.getElementById("ruolo-preview").textContent = "🏐 " + ruolo;
+    function closeEditor() {
+      document.getElementById("editor").style.display = "none";
+    }
 
-        // Statistiche
-        stats.forEach(stat => {
-          const value = document.getElementById(stat).value;
-          updateBar(stat, value);
-        });
+    document.querySelector(".scheda-preview").addEventListener("click", () => openEditor(document.querySelector(".scheda-preview")));
 
-        // Immagine
-        const fileInput = document.getElementById("upload-img");
-        const file = fileInput.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            document.getElementById("foto").src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    document.getElementById("add-card").addEventListener("click", () => {
+      const newCard = document.createElement("section");
+      newCard.className = "scheda";
+      newCard.innerHTML = `
+        <div class="valutazione">--</div>
+        <h2>Nuovo Giocatore</h2>
+        <div class="badge">🏐 Ruolo</div>
+        <div class="statistiche">
+          ${stats.map(stat => `<div class="stat"><span>${stat}</span><div class="bar"><div id="${stat}-bar"></div></div></div>`).join("")}
+        </div>
+      `;
+      newCard.addEventListener("click", () => openEditor(newCard));
+      document.getElementById("container").insertBefore(newCard, document.get
