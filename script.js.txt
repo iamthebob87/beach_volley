@@ -1,0 +1,17 @@
+function updateBar(id, value) {
+  document.getElementById(id + "-bar").style.width = value + "%";
+}
+
+document.getElementById("nome").addEventListener("input", function () {
+  document.getElementById("nome-preview").textContent = this.value;
+});
+
+document.getElementById("ruolo").addEventListener("change", function () {
+  document.getElementById("ruolo-preview").textContent = "🏐 " + this.value;
+});
+
+["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"].forEach(stat => {
+  const input = document.getElementById(stat);
+  updateBar(stat, input.value);
+  input.addEventListener("input", () => updateBar(stat, input.value));
+});
