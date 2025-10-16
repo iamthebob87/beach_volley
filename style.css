@@ -1,100 +1,78 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #1e1e1e, #121212);
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(to bottom, #121212, #1e1e1e);
   color: #f5f5f5;
 }
 
-/* Header */
 header {
   background-color: #111;
   color: #00e676;
-  padding: 1rem;
   text-align: center;
-  border-bottom: 4px solid #00e676;
+  padding: 1rem;
+  border-bottom: 2px solid #00e676;
 }
 
-nav ul {
+main {
   display: flex;
-  justify-content: center;
-  list-style: none;
-  background-color: #222;
-  margin: 0;
-  padding: 0.5rem;
-}
-
-nav a {
-  color: #ccc;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #00e676;
-}
-
-/* Giocatori */
-.main-giocatori {
-  display: grid;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.scheda-giocatore {
-  background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+.scheda-preview {
+  background-color: #1a1a1a;
   border: 2px solid #00e676;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1rem;
+  width: 300px;
   box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
-  position: relative;
+  text-align: center;
 }
 
-.scheda-giocatore h2 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  color: #ffffff;
-}
-
-.valutazione {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background-color: #00e676;
-  color: #000;
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 0.5rem 0.8rem;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #00e676;
-}
-
-.statistiche-pes {
-  margin-top: 1rem;
-}
-
-.stat-blocco {
+.scheda-preview img {
+  width: 100%;
+  border-radius: 8px;
   margin-bottom: 1rem;
 }
 
-.stat-blocco h4 {
-  margin: 0;
-  font-size: 1rem;
+.valutazione {
+  font-size: 2rem;
   color: #00e676;
+  margin-bottom: 0.5rem;
 }
 
-.stat-bar {
+.badge {
+  background-color: #00e676;
+  color: #000;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.statistiche .stat {
+  margin-bottom: 0.5rem;
+}
+
+.bar {
   background-color: #333;
+  height: 10px;
   border-radius: 4px;
   overflow: hidden;
-  margin-top: 0.3rem;
 }
 
-.stat-bar-fill {
+.bar div {
   height: 10px;
   background-color: #00e676;
   width: 0%;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.3s ease-in-out;
+}
+
+.editor {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
 }
