@@ -46,7 +46,42 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const stats = ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"];
+
+      function updateBar(id, value) {
+        const bar = document.getElementById(id + "-bar");
+        if (bar) bar.style.width = value + "%";
+      }
+
+      document.getElementById("applica").addEventListener("click", function () {
+        // Nome
+        const nome = document.getElementById("nome").value;
+        document.getElementById("nome-preview").textContent = nome || "Nome Giocatore";
+
+        // Ruolo
+        const ruolo = document.getElementById("ruolo").value;
+        document.getElementById("ruolo-preview").textContent = "🏐 " + ruolo;
+
+        // Statistiche
+        stats.forEach(stat => {
+          const value = document.getElementById(stat).value;
+          updateBar(stat, value);
+        });
+
+        // Immagine
+        const fileInput = document.getElementById("upload-img");
+        const file = fileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            document.getElementById("foto").src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
