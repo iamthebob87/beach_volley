@@ -1,24 +1,28 @@
-function updateBar(id, value) {
-  document.getElementById(id + "-bar").style.width = value + "%";
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("nome").addEventListener("input", function () {
-    document.getElementById("nome-preview").textContent = this.value;
-  });
+  const stats = ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"];
 
-  document.getElementById("ruolo").addEventListener("change", function () {
-    document.getElementById("ruolo-preview").textContent = "🏐 " + this.value;
-  });
+  function updateBar(id, value) {
+    document.getElementById(id + "-bar").style.width = value + "%";
+  }
 
-  ["potenza", "precisione", "ricezione", "muro", "resistenza", "agilita"].forEach(stat => {
-    const input = document.getElementById(stat);
-    updateBar(stat, input.value);
-    input.addEventListener("input", () => updateBar(stat, input.value));
-  });
+  document.getElementById("applica").addEventListener("click", function () {
+    // Nome
+    const nome = document.getElementById("nome").value;
+    document.getElementById("nome-preview").textContent = nome || "Nome Giocatore";
 
-  document.getElementById("upload-img").addEventListener("change", function () {
-    const file = this.files[0];
+    // Ruolo
+    const ruolo = document.getElementById("ruolo").value;
+    document.getElementById("ruolo-preview").textContent = "🏐 " + ruolo;
+
+    // Statistiche
+    stats.forEach(stat => {
+      const value = document.getElementById(stat).value;
+      updateBar(stat, value);
+    });
+
+    // Immagine
+    const fileInput = document.getElementById("upload-img");
+    const file = fileInput.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
